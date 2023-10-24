@@ -7,7 +7,7 @@ module rom #(
     output logic [DATA_WIDTH-1:0]   dout
 );
 
-logic [DATA_WIDTH-1:0] rom-array [2**ADDRESS_WIDTH-1:0]
+logic [DATA_WIDTH-1:0] rom_array [2**ADDRESS_WIDTH-1:0];
 
 initial begin
     $display("Loading ROM...");
@@ -15,7 +15,7 @@ initial begin
 end;
 
 always_ff @(posedge clk)
-    dout <= rom-array[addr];
+    dout <= rom_array[addr];
 
 endmodule
 
