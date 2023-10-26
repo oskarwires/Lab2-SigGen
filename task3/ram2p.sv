@@ -1,17 +1,19 @@
+// Definiting a 512 x 8 bit RAM with read & write
 module ram2p #(
-    parameter ADDRESS_WIDTH = 8,
-              DATA_WIDTH = 8
+    parameter DATA_WIDTH = 8,
+              ADDR_WIDTH = 9
+              
 )(
     input logic clk,
     input logic wr_en,
     input logic rd_en,
-    input logic [ADDRESS_WIDTH-1:0] wr_addr,
-    input logic [ADDRESS_WIDTH-1:0] rd_addr,
+    input logic [ADDR_WIDTH-1:0] wr_addr,
+    input logic [ADDR_WIDTH-1:0] rd_addr,
     input logic [DATA_WIDTH-1:0] din,
-    output logic [DATA_WIDTH-1:0] dout,
+    output logic [DATA_WIDTH-1:0] dout
 );
 
-logic [DATA_WIDTH-1:0] ram_array [2**ADDRESS_WIDTH-1:0];
+logic [DATA_WIDTH-1:0] ram_array [2**ADDR_WIDTH-1:0];
 
 always_ff @(posedge clk) begin
     if (wr_en == 1'b1)

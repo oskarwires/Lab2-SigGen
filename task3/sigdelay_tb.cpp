@@ -2,6 +2,7 @@
 #include "verilated_vcd_c.h"
 #include "Vsigdelay.h"
 #include "vbuddy.cpp"
+#include <iostream>
 
 #define MAX_SIM_CYC 1000000
 #define ADDRESS_WIDTH 8
@@ -19,7 +20,7 @@ int main(int argc, char **argv, char **env) {
 
   top->trace(tfp, 99);
   tfp->open("sigdelay.vcd");
- 
+
   if (vbdOpen() != 1) exit(-1);
   vbdHeader("L2T3: Delay");
   vbdSetMode(1);
@@ -32,6 +33,7 @@ int main(int argc, char **argv, char **env) {
   top->offset = 64;
   
   vbdInitMicIn(RAM_SZ);
+  std::cout << "Starting sim" << std::endl;
 
   for (simcyc = 0; simcyc < MAX_SIM_CYC; simcyc++) {
     for (tick = 0; tick < 2; tick++) {

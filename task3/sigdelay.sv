@@ -14,7 +14,7 @@ module sigdelay #(
 
 logic [ADDR_WIDTH-1:0] addr;
 
-counter addr_counter (
+counter myCounter (
     .incr (incr),
     .rst (rst),
     .en (wr),
@@ -22,7 +22,7 @@ counter addr_counter (
     .count (addr)
 );
 
-ram2p sd_ram (
+ram2p myRam (
     .wr_en (wr),
     .rd_en (rd),
     .wr_addr (addr),
