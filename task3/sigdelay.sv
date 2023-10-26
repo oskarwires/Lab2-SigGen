@@ -13,6 +13,8 @@ module sigdelay #(
 );
 
 logic [ADDR_WIDTH-1:0] addr;
+logic [ADDR_WIDTH-1:0] offset_addr;
+assign offset_addr = addr - offset;
 
 counter myCounter (
     .incr (incr),
@@ -26,7 +28,7 @@ ram2p myRam (
     .wr_en (wr),
     .rd_en (rd),
     .wr_addr (addr),
-    .rd_addr (addr-offset),
+    .rd_addr (offset_addr),
     .din (mic_signal),
     .clk (clk),
     .dout (delayed_signal)

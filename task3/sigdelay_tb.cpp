@@ -30,7 +30,7 @@ int main(int argc, char **argv, char **env) {
   top->wr = 1;
   top->rd = 1;
   top->incr = 1;
-  top->offset = 64;
+  top->offset = 32;
   
   vbdInitMicIn(RAM_SZ);
   std::cout << "Starting sim" << std::endl;
@@ -43,7 +43,9 @@ int main(int argc, char **argv, char **env) {
     }
 
     top->mic_signal = vbdMicValue();
-    if (vbdFlag()) top->offset = abs(vbdValue());
+    if (vbdFlag()) {
+      top->offset = abs(vbdValue());
+    } 
 
     vbdPlot(int(top->mic_signal), 0, 255);
     vbdPlot(int(top->delayed_signal), 0, 255);
